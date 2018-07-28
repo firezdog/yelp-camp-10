@@ -34,3 +34,7 @@ h4.pull-right {
 #cg-desc-row {
     padding: 10px 30px 20px 30px;
 }
+
+.rest-button {
+    display: inline-block;
+}

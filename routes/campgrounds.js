@@ -65,6 +65,19 @@ router.put("/:id/update", check, function(req,res) {
     }); 
 });
 
+//DELETE SUBMISSION
+
+router.delete("/:id/delete", check, function(req,res){
+    var id = req.params.id;
+    Campground.findByIdAndRemove(id, function(err){
+        if(err){
+            console.log(err);
+        } else {
+            res.redirect("/campgrounds");
+        }
+    });
+});
+
 //SHOW (MUST BE AT END TO PREVENT INTERPRETATION OF OTHER ROUTES AS ID)
 router.get("/:id", function(req, res) {
     Campground.findById(req.params.id).populate("comments").exec(function(err, foundCampground){
