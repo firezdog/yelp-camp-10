@@ -7,8 +7,9 @@ var express = require("express"),
     Campground = require("./models/campgrounds"),
     Comment = require("./models/comment"),
     User = require("./models/user"),
-    seedDB = require("./seeds");
-    flash = require('connect-flash');
+    seedDB = require("./seeds"),
+    flash = require('connect-flash'),
+    methodOverride = require('method-override');
 
 var commentRoutes = require("./routes/comments");
 var campgroundRoutes = require("./routes/campgrounds");
@@ -16,9 +17,10 @@ var indexRoutes = require("./routes/index");
 
 mongoose.connect("mongodb://localhost/yelp_camp");
 
+app.use(methodOverride("_method"));
 app.use(flash());
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static(__dirname + "/public"))
+app.use(express.static(__dirname + "/public"));
 app.set("view engine", "ejs");
 
 seedDB();

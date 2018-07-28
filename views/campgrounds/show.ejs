@@ -20,16 +20,16 @@
                 <div id="cg-desc-row" class="row">
                     <p><%=campground.description%></p>
                     <div>
-                        <% if (campground.author.username === user.username) { %>
+                        <% if (typeof campground.author.username !== 'undefined' && campground.author.username === user.username) { %>
                             <span class="col-md-3">
                                 <a href="/campgrounds/<%= campground._id %>/edit">
-                                    <button class="btn btn-info">Edit</button>
+                                    <button class="btn btn-warning">Edit</button>
                                 </a>
                             </span>
-                        <% } %>
+                        <% } %>                        
                         <span class="col-md-7"></span>
                         <% if (typeof campground.author.username !== "undefined") {%>
-                            <span class="col-md-2">submitted by <strong><%=campground.author.username%></strong></span>
+                            <span class="col-md-2"><em>submitted by</em> <strong><%=campground.author.username%></strong></span>
                         <%}%>
                     </div>
                 </div>

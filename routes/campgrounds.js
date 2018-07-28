@@ -40,6 +40,7 @@ router.post("/", check, function(req, res) {
     });    
 });
 
+//EDIT FORM
 router.get("/:id/edit", check, function(req,res){
     var id = req.params.id;
     Campground.findById(req.params.id, function(err, campground){
@@ -51,7 +52,8 @@ router.get("/:id/edit", check, function(req,res){
     });
 });
 
-router.post("/:id/update", check, function(req,res) {
+//FORM SUBMISSION (EDIT)
+router.put("/:id/update", check, function(req,res) {
     var id = req.params.id;
     Campground.findByIdAndUpdate(id,req.body, function(err) {
         if (err) {
