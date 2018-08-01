@@ -20,15 +20,17 @@
                 <div id="cg-desc-row" class="row">
                     <p><%=campground.description%></p>
                     <div>
-                        <% if (typeof campground.author.username !== 'undefined' && campground.author.username === user.username) { %>
-                            <div class="col-md-3">
-                                <a class="rest-button" href="/campgrounds/<%= campground._id %>/edit">
-                                <button class="btn-xs btn btn-warning">Edit</button>
-                                </a>
-                                <form class="rest-button" action="/campgrounds/<%=campground._id%>/delete?_method=delete" method="post">
-                                    <button class="btn btn-xs btn-danger">Delete</button>
-                                </form>
-                            </div>
+                        <% if (typeof campground.author.username !== 'undefined' && typeof user !== 'undefined') { %>
+                            <% if (campground.author.username === user.username) { %>
+                                <div class="col-md-3">
+                                    <a class="rest-button" href="/campgrounds/<%= campground._id %>/edit">
+                                    <button class="btn-xs btn btn-warning">Edit</button>
+                                    </a>
+                                    <form class="rest-button" action="/campgrounds/<%=campground._id%>/delete?_method=delete" method="post">
+                                        <button class="btn btn-xs btn-danger">Delete</button>
+                                    </form>
+                                </div>
+                            <% } %>
                         <% } %>                        
                         <span class="col-md-7"></span>
                         <% if (typeof campground.author.username !== "undefined") {%>

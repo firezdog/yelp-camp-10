@@ -41,12 +41,19 @@ router.post("/", check, function(req, res) {
 });
 
 //EDIT FORM
-router.get("/:id/edit", check, function(req,res){
+router.get("/:id/edit", function(req,res){
     var id = req.params.id;
-    Campground.findById(req.params.id, function(err, campground){
+    if (!req.isAuthenticated()){
+        return res.redirect("/login");
+    }
+    Campground.findById(id, function(err, campground){
         if(err) {
             console.log(err);
         } else {
+            if (typeof campground.author == 'undefined' ||
+            !campground.author.id.equals(req.user.id)) {
+                return res.redirect("/campgrounds");
+            }
             res.render("campgrounds/edit", {campground});
         }
     });
