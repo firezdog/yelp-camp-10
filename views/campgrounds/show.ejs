@@ -22,7 +22,7 @@
                     <div>
                         <% if (typeof campground.author.username !== 'undefined' && typeof user !== 'undefined') { %>
                             <% if (campground.author.username === user.username) { %>
-                                <div class="col-md-3">
+                                <div>
                                     <a class="rest-button" href="/campgrounds/<%= campground._id %>/edit">
                                     <button class="btn-xs btn btn-warning">Edit</button>
                                     </a>
@@ -32,9 +32,10 @@
                                 </div>
                             <% } %>
                         <% } %>                        
-                        <span class="col-md-7"></span>
                         <% if (typeof campground.author.username !== "undefined") {%>
-                            <span class="col-md-2"><em>submitted by</em> <strong><%=campground.author.username%></strong></span>
+                            <p>
+                              <em>submitted by</em> <strong><%=campground.author.username%></strong>
+                            </p>
                         <%}%>
                     </div>
                 </div>
