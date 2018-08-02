@@ -2,10 +2,10 @@ var express = require('express');
 var router = express.Router({mergeParams: true});
 var Campground = require('../models/campgrounds');
 var Comment = require('../models/comment');
-var check = require('../middleware/isLoggedIn');
+var check = require('../middleware/authorization');
 
 //NEW COMMENT
-router.get("/new", check, function(req, res) {
+router.get("/new", check.isLoggedIn, function(req, res) {
     Campground.findById(req.params.id, function(err, campground) {
         if (err) {
             console.log(err)
@@ -16,7 +16,7 @@ router.get("/new", check, function(req, res) {
 })
 
 //CREATE COMMENT
-router.post("/", check, function(req, res) {
+router.post("/", check.isLoggedIn, function(req, res) {
     //lookup campground using ID
     Campground.findById(req.params.id, function(err, campground) {
         if (err) {
