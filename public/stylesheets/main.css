@@ -38,3 +38,7 @@ h4.pull-right {
 .rest-button {
     display: inline-block;
 }
+
+#comment-button-row {
+    margin-top: 5px;
+}
