@@ -1,3 +1,7 @@
+/* 
+    {host}://campgrounds/:id/comments/...
+*/
+
 var express = require('express');
 var router = express.Router({mergeParams: true});
 var Campground = require('../models/campgrounds');
@@ -44,7 +48,7 @@ router.post("/", check.isLoggedIn, function(req, res) {
 });
 
 //EDIT COMMENT (FORM)
-router.get("/:comment_id", function(req,res){
+router.get("/:comment_id/edit", check.isCommentOwner, function(req,res){
     const campId = req.params.id;
     const commentId = req.params.comment_id;
     Campground.findById(campId, function(err, campground){
@@ -63,7 +67,7 @@ router.get("/:comment_id", function(req,res){
 });
 
 //EDIT COMMENT (POST DATA)
-router.put("/:comment_id", function(req,res){
+router.put("/:comment_id/update", check.isCommentOwner, function(req,res){
     const campId = req.params.id;
     const commentId = req.params.comment_id;
     Comment.findByIdAndUpdate(commentId, req.body.comment, function(err){
@@ -76,7 +80,7 @@ router.put("/:comment_id", function(req,res){
 });
 
 //DELETE COMMENT
-router.delete("/:comment_id/delete",function(req,res){
+router.delete("/:comment_id/delete", check.isCommentOwner, function(req,res){
     const campId = req.params.id;
     const commentId = req.params.comment_id;
     Comment.findByIdAndRemove(commentId, function(err){
