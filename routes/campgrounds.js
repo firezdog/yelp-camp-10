@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Campground = require('../models/campgrounds');
-var check = require('../middleware/authorization');
+var check = require('../middleware');
 
 //INDEX
 router.get("/", function(req, res) {

@@ -4,10 +4,8 @@ var express = require("express"),
     mongoose = require("mongoose"),
     passport = require("passport"),
     LocalStrategy = require("passport-local"),
-    Campground = require("./models/campgrounds"),
-    Comment = require("./models/comment"),
     User = require("./models/user"),
-    seedDB = require("./seeds"),
+    // seedDB = require("./seeds"),
     flash = require('connect-flash'),
     methodOverride = require('method-override');
 
